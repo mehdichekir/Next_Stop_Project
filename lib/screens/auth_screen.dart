@@ -3,9 +3,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:cloud_functions/cloud_functions.dart'; // For callable functions
+import 'package:transport_app/screens/bottom_navbar.dart';
+import 'package:transport_app/screens/choose_mean_screen.dart';
 import 'package:transport_app/widgets/auth-form.dart';
 
 class AuthScreen extends StatefulWidget {
+  static const routeName = '/AuthScreen';
   const AuthScreen({super.key});
 
   @override
@@ -35,11 +38,13 @@ class _AuthScreenState extends State<AuthScreen> {
           email: email,
           password: password,
         );
+        Navigator.of(context).pushReplacementNamed(BottomNavbar.routeName);
       } else {
         userCredential = await auth.createUserWithEmailAndPassword(
           email: email,
           password: password,
         );
+        Navigator.of(context).pushReplacementNamed(ChooseMeanScreen.routeName);
         await FirebaseFirestore.instance
             .collection('users')
             .doc(userCredential.user!.uid)
@@ -75,8 +80,6 @@ class _AuthScreenState extends State<AuthScreen> {
       setState(() {
         isLoading = true;
       });
-
-      // Call Firebase Cloud Function to send admin request email
       final callable = FirebaseFunctions.instance.httpsCallable('sendAdminRequestEmail');
       final result = await callable.call({'email': email});
 
@@ -114,14 +117,14 @@ class _AuthScreenState extends State<AuthScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.lightBlue,
+        backgroundColor: const Color.fromARGB(255, 18, 77, 122),
       ),
-      backgroundColor: Colors.lightBlue,
+      backgroundColor: const Color.fromARGB(255, 18, 77, 122),
       body: SingleChildScrollView(
         child: Column(
           children: [
             Container(
-              color: Colors.lightBlue,
+              color: const Color.fromARGB(255, 18, 77, 122),
               height: 200,
               width: double.maxFinite,
               child: Image.asset(
@@ -146,7 +149,7 @@ class _AuthScreenState extends State<AuthScreen> {
               ),
               child: AuthForm(
                 submitAuthForm,
-                isLogin,
+                isLoading,
                 requestAdminAccount,
               ),
             ),

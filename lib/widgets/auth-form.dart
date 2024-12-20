@@ -25,6 +25,8 @@ class _AuthFormState extends State<AuthForm> {
   String userName = '';
   String userPassword = '';
   final emailController = TextEditingController();
+  final userNamecontroller = TextEditingController();
+  final passwordController = TextEditingController();
 
   void trySubmit() {
     final isValid = formKey.currentState!.validate();
@@ -204,6 +206,7 @@ Future<void> sendAdminRequestEmail(String email,String password,String name) asy
                               ),
                             ),
                             TextFormField(
+                              controller: userNamecontroller,
                               key: const ValueKey('username'),
                               validator: (value) {
                                 if (value!.isEmpty || value.length < 4) {
@@ -234,6 +237,7 @@ Future<void> sendAdminRequestEmail(String email,String password,String name) asy
                       ),
                       const SizedBox(height: 4),
                       TextFormField(
+                        controller: emailController,
                         key: const ValueKey('email'),
                         validator: (value) {
                           if (value!.isEmpty || !value.contains('@')) {
@@ -265,6 +269,7 @@ Future<void> sendAdminRequestEmail(String email,String password,String name) asy
                       ),
                       const SizedBox(height: 4),
                       TextFormField(
+                        controller: passwordController,
                         key: const ValueKey('password'),
                         validator: (value) {
                           if (value!.isEmpty || value.length < 7) {

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'auth_screen.dart';
-
-
 class HomePage extends StatelessWidget {
+  static const routeName = '/HomePage';
   const HomePage({super.key});
 
   @override
@@ -12,7 +11,6 @@ class HomePage extends StatelessWidget {
         padding: const EdgeInsets.only(top: 33),
         child: Stack(
           children: [
-            // Background
             Container(
               decoration: BoxDecoration(
                 image: DecorationImage(
@@ -30,28 +28,52 @@ class HomePage extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 15.0),
               child: Column(
                 children: [
-                  // Title and subtitle
-                  const Align(
+                   Align(
                     alignment: Alignment.topLeft,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          'NextStop',
-                          style: TextStyle(
-                            fontSize: 40.0,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          ),
-                        ),
+                        // Text(
+                        //   'NextStop',
+                        //   style: TextStyle(
+                        //     fontSize: 40.0,
+                        //     fontWeight: FontWeight.bold,
+                        //     color: Colors.white,
+                        //   ),
+                        // ),
                         SizedBox(height: 10),
-                        Text(
-                          'Simplify your journeys, optimize your time',
+                        Container(
+                          margin: EdgeInsets.only(top: 40,left: 20),
+                          padding: const EdgeInsets.only(top: 10,bottom: 10,left: 40,right: 40),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            border: const Border(
+                              top: BorderSide(width: 3, color:  Color.fromARGB(255, 10, 51, 85)),
+                      left: BorderSide(width: 3, color:  Color.fromARGB(255, 10, 51, 85)),
+                      right: BorderSide(width: 3, color:  Color.fromARGB(255, 10, 51, 85)),
+                      bottom: BorderSide(width: 3,color:  Color.fromARGB(255, 10, 51, 85))
+                            )
+                          ),
+                          child: Column(children: [
+                             Text(
+                          'Are You Fed Up Of',
                           style: TextStyle(
                             fontSize: 20.0,
-                            color: Colors.white70,
+                            fontWeight: FontWeight.bold,
+                            color: Color.fromARGB(255, 171, 178, 193),
                           ),
                         ),
+                        Text(
+                          'Catching Your Transport?',
+                          style: TextStyle(
+                            fontSize: 20.0,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold
+                          ),
+                        ),
+                          ],),
+                        )
+                       
                       ],
                     ),
                   ),
@@ -65,56 +87,60 @@ class HomePage extends StatelessWidget {
                       ),
                       const SizedBox(height: 15),
                       const Text(
-                        'Welcome to NextStop',
+                        'Make It Easy',
                         style: TextStyle(
-                          fontSize: 28.0,
+                          fontSize: 30,
                           fontWeight: FontWeight.bold,
-                          color: Colors.white,
+                          color: Color.fromARGB(255, 255, 255, 255),
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                      const Text(
+                        'With NEXTSTOP',
+                        style: TextStyle(
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold,
+                          color: Color.fromARGB(255, 171, 178, 193),
                         ),
                         textAlign: TextAlign.center,
                       ),
                       const SizedBox(height: 10),
-                      const Text(
-                        '      Your platform for seamless '
-                            'public '
-                            ''
-                            '      transport in Tunisia.',
-                        style: TextStyle(
-                          fontSize: 18.0,
-                          color: Colors.white,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
+                      // const Text(
+                      //   '      Your platform for seamless '
+                      //       'public '
+                      //       ''
+                      //       '      transport in Tunisia.',
+                      //   style: TextStyle(
+                      //     fontSize: 18.0,
+                      //     color: Colors.white,
+                      //   ),
+                      //   textAlign: TextAlign.center,
+                      // ),
                     ],
                   ),
                   const Spacer(flex: 1),
                   // Get Started Button
                   Column(
                     children: [
-                      ElevatedButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => const AuthScreen()),
-                          );
-                        },
-                        style: ElevatedButton.styleFrom(
-                          foregroundColor: Colors.black,
-                          backgroundColor: Colors.white,
-                          padding: const EdgeInsets.symmetric(horizontal: 50.0, vertical: 15.0),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30.0),
-                          ),
-                          elevation: 10,
-                        ),
-                        child: const Text(
-                          'Get Started',
-                          style: TextStyle(
-                            fontSize: 18.0,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
+                     TextButton(
+                    style: TextButton.styleFrom(
+                  backgroundColor: const Color.fromARGB(255, 10, 51, 85),
+                  foregroundColor: Colors.white,
+                  minimumSize: const Size(240, 60),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8.0), // Rectangle shape with rounded corners
+            ),
+                ),
+                    onPressed: (){
+                     
+                      
+                      
+                        Navigator.of(context).pushReplacementNamed(AuthScreen.routeName);
+                      
+        
+                      },
+                    child:const  Text('Get Started',style: TextStyle(fontSize: 20, color: Colors.white),
+                    )),
                      const SizedBox(height: 20),
                       const Text(
                         'NextStop - Optimize your trips, enjoy your time',
